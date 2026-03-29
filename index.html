@@ -464,7 +464,7 @@ const S={
   currentCard:0,niosRoute:'A',onboarded:false,rating:0
 };
 const TODAY=new Date();TODAY.setHours(0,0,0,0);
-const APP_URL='https://after12.netlify.app'; // update after deploy
+const APP_URL='https://after12th-app.netlify.app'; // update after deploy
 
 // ── STORAGE ──
 function save(){
@@ -496,7 +496,7 @@ function show(name){document.querySelectorAll('.screen').forEach(s=>{s.classList
 
 // ── WHATSAPP SHARE ──
 function shareWhatsApp(){
-  const msg=encodeURIComponent(`📚 After12th — Track JEE, NEET, KCET & more!\nNever miss a registration deadline.\nInstall free: ${APP_URL}`);
+  const msg=encodeURIComponent(`📚 After12th — Track JEE, NEET, KCET & more!\nNever miss a registration deadline.\nInstall free: ${APP_URL}\n\nApp by Rishabh Rukmangadha.`);
   window.open(`https://wa.me/?text=${msg}`,'_blank');
   // GA event (if analytics loaded)
   if(typeof gtag!=='undefined') gtag('event','share',{method:'whatsapp'});
