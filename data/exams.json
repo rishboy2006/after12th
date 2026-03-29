@@ -1,0 +1,1015 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "cycle": "2026",
+    "last_updated": "2026-03-27",
+    "update_instructions": "Visit each exam's official site in October-November each year and update the dates below. Static fields (total_marks, passing_marks, attempts, pattern) rarely change \u2014 verify if there is a syllabus revision notification.",
+    "sources": {
+      "JEE": "jeemain.nta.ac.in",
+      "NEET": "neet.nta.nic.in",
+      "KCET": "kea.kar.nic.in",
+      "VIT": "viteee.vit.ac.in",
+      "SRM": "srmist.edu.in/srmjeee",
+      "MET": "manipal.edu/met",
+      "COMED_K": "comedk.org",
+      "IISER": "iiseradmission.in",
+      "PSET": "admissions.pes.edu + pes.edu"
+    },
+    "sections": [
+      "exams",
+      "nios_biology_route"
+    ],
+    "contact_verified": true,
+    "reference_date": "2026-03-27",
+    "note": "Days calculations are relative to reference_date. Recompute in app at runtime."
+  },
+  "exams": [
+    {
+      "id": "JEE",
+      "short_name": "JEE",
+      "full_name": "JEE Main",
+      "official_name": "Joint Entrance Examination (Main)",
+      "type": "Engineering",
+      "conducting_body": "NTA (National Testing Agency)",
+      "official_site": "https://jeemain.nta.ac.in",
+      "brand_color": "#003087",
+      "icon": "\ud83d\udcd0",
+      "popularity_score": 9.6,
+      "popularity_note": "~13 lakh applicants annually. Gateway to NITs, IIITs, GFTIs and JEE Advanced (IITs).",
+      "fees": {
+        "general_male": 1000,
+        "general_female": 800,
+        "sc_st_pwd": 500,
+        "currency": "INR",
+        "note": "Session 2 fees. Session 1 fees were similar."
+      },
+      "exam_pattern": {
+        "total_marks": 300,
+        "total_questions": 90,
+        "subjects": [
+          "Physics",
+          "Chemistry",
+          "Mathematics"
+        ],
+        "marking_scheme": "+4 correct, -1 wrong (MCQ); +4 correct, 0 wrong (NAT)",
+        "mode": "Computer Based Test (CBT)",
+        "duration_minutes": 180
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "No minimum passing marks for JEE Main itself. For JEE Advanced eligibility, top 2.5 lakh qualifiers are selected. For NITs/IIITs/GFTIs, rank-based counselling via JoSAA.",
+        "cutoff_for_advanced_general": "~88-93 percentile (varies each year)",
+        "board_requirement": "75% in Class 12 or top 20 percentile in board"
+      },
+      "attempts": {
+        "max_per_year": 2,
+        "max_total": 3,
+        "note": "3 consecutive years. Can attempt both sessions (Jan + Apr) each year. Best of two NTA scores is used."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2025-10-31",
+          "registration_end": "2025-11-22",
+          "exam_dates": [
+            "2026-01-21",
+            "2026-01-22",
+            "2026-01-23",
+            "2026-01-24",
+            "2026-01-28",
+            "2026-01-29"
+          ],
+          "result_date": "2026-02-16",
+          "status": "completed"
+        },
+        {
+          "session": 2,
+          "registration_start": "2026-02-01",
+          "registration_end": "2026-02-25",
+          "registration_reopened": "2026-03-12",
+          "registration_reopen_end": "2026-03-13",
+          "exam_dates": [
+            "2026-04-02",
+            "2026-04-03",
+            "2026-04-04",
+            "2026-04-05",
+            "2026-04-07",
+            "2026-04-08",
+            "2026-04-09"
+          ],
+          "result_date": "2026-04-20",
+          "status": "upcoming"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-03-13",
+        "registration_status": "closed",
+        "registration_note": "Session 2 registration closed (Feb 25, re-opened Mar 12\u201313). Exam Apr 2\u20139.",
+        "exam_date": "2026-04-02",
+        "result_date": "2026-04-20",
+        "deadline_label": "Session 2 exam",
+        "next_actionable_date": "2026-04-02",
+        "next_actionable_label": "Session 2 exam begins",
+        "days_until_next": 6,
+        "days_label": "In 6 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "011-69227700",
+          "011-40759000"
+        ],
+        "email": "jeemain@nta.ac.in",
+        "hours": "9:30 AM \u2013 5:30 PM (Mon\u2013Sat)",
+        "address": "NSIC-MDBP Building, First Floor, Okhla Industrial Estate, New Delhi \u2013 110020",
+        "contact_page": "https://jeemain.nta.nic.in/contact-us/",
+        "note": "NTA central helpdesk handles both JEE sessions. Expect delays during peak registration.",
+        "verified": true,
+        "source": "jeemain.nta.nic.in/contact-us + vedantu.com \u2014 March 2026"
+      }
+    },
+    {
+      "id": "NEET",
+      "short_name": "NEET",
+      "full_name": "NEET UG",
+      "official_name": "National Eligibility cum Entrance Test (Undergraduate)",
+      "type": "Medical",
+      "conducting_body": "NTA (National Testing Agency)",
+      "official_site": "https://neet.nta.nic.in",
+      "brand_color": "#006B3C",
+      "icon": "\ud83e\ude7a",
+      "popularity_score": 9.3,
+      "popularity_note": "~20 lakh applicants annually. Only gateway to MBBS/BDS in India.",
+      "fees": {
+        "general": 1700,
+        "obc_ewc": 1600,
+        "sc_st_pwd": 1000,
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 720,
+        "total_questions": 180,
+        "subjects": [
+          "Physics (50 Q)",
+          "Chemistry (50 Q)",
+          "Biology/Botany (50 Q)",
+          "Biology/Zoology (50 Q)"
+        ],
+        "marking_scheme": "+4 correct, -1 wrong",
+        "mode": "Pen and Paper (OMR)",
+        "duration_minutes": 200
+      },
+      "qualifying": {
+        "passing_marks": 360,
+        "passing_note": "General category must score at least 50th percentile (~360+ marks). SC/ST/OBC at 40th percentile (~288+ marks). PwD at 45th percentile.",
+        "cutoff_for_aiims": "~650+ marks for top government colleges",
+        "board_requirement": "50% in PCB in Class 12 (40% for SC/ST/OBC)"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "No upper limit on attempts. Held once a year."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2026-02-01",
+          "registration_end": "2026-03-07",
+          "exam_dates": [
+            "2026-05-03"
+          ],
+          "result_date": "2026-06-14",
+          "status": "upcoming",
+          "note": "Dates based on NTA pattern \u2014 verify at neet.nta.nic.in when officially announced"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-03-07",
+        "registration_status": "closed",
+        "registration_note": "Registration closed Mar 7. Exam May 3.",
+        "exam_date": "2026-05-03",
+        "result_date": "2026-06-14",
+        "deadline_label": "NEET UG registration",
+        "next_actionable_date": "2026-05-03",
+        "next_actionable_label": "NEET UG exam",
+        "days_until_next": 37,
+        "days_label": "In 37 days"
+      },
+      "pcm_eligibility": {
+        "eligible": true,
+        "condition": "PCM students are eligible for NEET if they have passed Biology or Biotechnology as an additional/optional subject from a recognised board.",
+        "nmc_ruling": "NMC (National Medical Commission) confirmed under GMER-2023 regulations. NIOS is a recognised board.",
+        "legal_note": "Admission is currently subject to pending Supreme Court Special Leave Petitions. Students are allowed to appear provisionally.",
+        "recommended_route": "NIOS Biology (Subject Code 314) as additional subject via On-Demand Exam or public exam.",
+        "aggregate_required": "50% in PCB combined for General category. 40% for SC/ST/OBC. English must be passed but not counted in aggregate.",
+        "source": "NMC notice U/114021/01/2024-UGMEB, careers360.com, physicsnavigator.in \u2014 March 2026"
+      },
+      "contact": {
+        "helpline_phone": [
+          "011-69227700",
+          "011-40759000"
+        ],
+        "email": "neet@nta.ac.in",
+        "hours": "9:30 AM \u2013 5:30 PM (Mon\u2013Sat)",
+        "address": "NTA, C-20 1A/8, Sector 62, NOIDA, Uttar Pradesh \u2013 201309",
+        "contact_page": "https://neet.nta.nic.in/contact-us/",
+        "note": "Same NTA helpdesk as JEE. Email response within 36\u201372 hours.",
+        "verified": true,
+        "source": "neet.nta.nic.in/contact-us + nta.ac.in \u2014 March 2026"
+      }
+    },
+    {
+      "id": "KCET",
+      "short_name": "KCET",
+      "full_name": "KCET",
+      "official_name": "Karnataka Common Entrance Test",
+      "type": "State CET (Karnataka)",
+      "conducting_body": "KEA (Karnataka Examinations Authority)",
+      "official_site": "https://kea.kar.nic.in",
+      "brand_color": "#CC0000",
+      "icon": "\ud83c\udf93",
+      "popularity_score": 7.2,
+      "popularity_note": "~2.5 lakh applicants. Mandatory for Karnataka govt engineering/medical seats. Very affordable fees.",
+      "fees": {
+        "general": 650,
+        "sc_st": 500,
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 180,
+        "total_questions": 180,
+        "subjects": [
+          "Physics (60 Q)",
+          "Chemistry (60 Q)",
+          "Mathematics or Biology (60 Q)"
+        ],
+        "marking_scheme": "+1 correct, 0 wrong (no negative marking)",
+        "mode": "Pen and Paper (OMR)",
+        "duration_minutes": 160
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "Rank-based counselling. No minimum cutoff \u2014 rank determines college allocation. Karnataka domicile required for most seats.",
+        "board_requirement": "Must have studied in Karnataka for 7 years or parents working in Karnataka govt service"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "No limit on attempts. Held once a year."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2026-01-15",
+          "registration_end": "2026-02-28",
+          "exam_dates": [
+            "2026-04-22",
+            "2026-04-23"
+          ],
+          "result_date": "2026-05-30",
+          "status": "upcoming"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-02-22",
+        "registration_status": "closed",
+        "registration_note": "Registration closed Feb 22 (extended). Exam Apr 22\u201323.",
+        "exam_date": "2026-04-22",
+        "result_date": "2026-05-30",
+        "deadline_label": "KCET registration",
+        "next_actionable_date": "2026-04-22",
+        "next_actionable_label": "KCET exam",
+        "days_until_next": 26,
+        "days_label": "In 26 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "080-23460460",
+          "080-23568201",
+          "080-23568202"
+        ],
+        "email": "keauthority-ka@nic.in",
+        "hours": "10:00 AM \u2013 5:00 PM (Mon\u2013Fri)",
+        "address": "Karnataka Examinations Authority, 18th Cross, Sampige Road, Malleswaram, Bangalore \u2013 560012",
+        "contact_page": "https://cetonline.karnataka.gov.in/kea/",
+        "counselling_helpline": "080-29653900",
+        "note": "Multiple phone lines. Use counselling helpline during seat allotment period.",
+        "verified": true,
+        "source": "karnataka.com/education/cet + collegedekho.com \u2014 March 2026"
+      }
+    },
+    {
+      "id": "VIT",
+      "short_name": "VIT",
+      "full_name": "VITEEE",
+      "official_name": "VIT Engineering Entrance Examination",
+      "type": "Deemed University",
+      "conducting_body": "VIT University, Vellore",
+      "official_site": "https://viteee.vit.ac.in",
+      "brand_color": "#7B0D1E",
+      "icon": "\ud83c\udfeb",
+      "popularity_score": 8.0,
+      "popularity_note": "~2.5 lakh applicants. VIT Vellore and Chennai campuses combined. Strong placement record.",
+      "fees": {
+        "all_categories": 1350,
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 125,
+        "total_questions": 125,
+        "subjects": [
+          "Physics (35 Q)",
+          "Chemistry (35 Q)",
+          "Mathematics/Biology (40 Q)",
+          "English (5 Q)",
+          "Aptitude (10 Q)"
+        ],
+        "marking_scheme": "+1 correct, 0 wrong (no negative marking)",
+        "mode": "Computer Based Test (CBT)",
+        "duration_minutes": 150
+      },
+      "qualifying": {
+        "passing_marks": 50,
+        "passing_note": "No strict cutoff. Rank-based allotment. Top ~10,000 ranks get CS/ECE at Vellore campus.",
+        "board_requirement": "60% aggregate in PCM in Class 12"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "No limit on total attempts."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2025-11-01",
+          "registration_end": "2026-01-31",
+          "exam_dates": [
+            "2026-03-12",
+            "2026-03-13",
+            "2026-03-14",
+            "2026-03-15",
+            "2026-03-16",
+            "2026-03-17",
+            "2026-03-18"
+          ],
+          "result_date": "2026-04-10",
+          "status": "upcoming",
+          "note": "Slot-based exam \u2014 candidates choose their preferred date and city"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-03-31",
+        "registration_status": "check_site",
+        "registration_note": "Application deadline extended. Check viteee.vit.ac.in for latest date. Exam Apr 28\u2013May 3.",
+        "exam_date": "2026-04-28",
+        "result_date": "2026-05-20",
+        "deadline_label": "VITEEE registration",
+        "next_actionable_date": "2026-03-31",
+        "next_actionable_label": "Check VITEEE registration deadline",
+        "days_until_next": 4,
+        "days_label": "In 4 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "0416-2202188",
+          "0416-2202050",
+          "0416-2202055"
+        ],
+        "email": "ugadmission@vit.ac.in",
+        "admissions_email_chennai": "admissions.chennai@vit.ac.in",
+        "hours": "9:00 AM \u2013 5:00 PM (Mon\u2013Sat)",
+        "address": "VIT University, Vellore \u2013 632014, Tamil Nadu",
+        "contact_page": "https://vit.ac.in/contactus",
+        "note": "Use ugadmission@vit.ac.in for VITEEE B.Tech queries. Chennai campus has separate contact.",
+        "verified": true,
+        "source": "vit.ac.in/contactus + admissions.vit.ac.in \u2014 March 2026"
+      }
+    },
+    {
+      "id": "SRM",
+      "short_name": "SRM",
+      "full_name": "SRMJEEE",
+      "official_name": "SRM Joint Engineering Entrance Examination",
+      "type": "Deemed University",
+      "conducting_body": "SRM Institute of Science and Technology",
+      "official_site": "https://srmist.edu.in/srmjeee",
+      "brand_color": "#E05C00",
+      "icon": "\ud83c\udfdb",
+      "popularity_score": 7.5,
+      "popularity_note": "~1.5 lakh applicants. SRM Kattankulathur (Chennai), Amaravati, Vadapalani campuses.",
+      "fees": {
+        "all_categories": 1100,
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 140,
+        "total_questions": 125,
+        "subjects": [
+          "Physics (35 Q)",
+          "Chemistry (35 Q)",
+          "Mathematics (35 Q)",
+          "English (10 Q)",
+          "Aptitude (10 Q)"
+        ],
+        "marking_scheme": "+1 correct, 0 wrong (no negative marking)",
+        "mode": "Computer Based Test (CBT) \u2014 Remote Proctored or Centre",
+        "duration_minutes": 150
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "Rank-based. Top ranks get CSE/ECE at main Kattankulathur campus.",
+        "board_requirement": "50% aggregate in PCM in Class 12"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "No limit on attempts."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2025-11-01",
+          "registration_end": "2026-02-15",
+          "exam_dates": [
+            "2026-04-01",
+            "2026-04-05"
+          ],
+          "result_date": "2026-05-01",
+          "status": "upcoming"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-04-16",
+        "registration_status": "open",
+        "registration_note": "Phase 1 registration open until Apr 16. Phase 2 & 3 dates TBA.",
+        "exam_date": "2026-04-01",
+        "result_date": "2026-05-01",
+        "deadline_label": "SRMJEEE Phase 1 registration",
+        "next_actionable_date": "2026-04-16",
+        "next_actionable_label": "SRMJEEE Phase 1 deadline",
+        "days_until_next": 20,
+        "days_label": "In 20 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "+91-80-69087000"
+        ],
+        "email": "admissions.india@srmist.edu.in",
+        "hours": "9:00 AM \u2013 5:00 PM (Mon\u2013Sat, except public holidays)",
+        "address": "Directorate of Admissions, SRM Institute of Science and Technology, Kattankulathur \u2013 603203, Tamil Nadu",
+        "contact_page": "https://www.srmist.edu.in/admission-india/",
+        "fraud_warning": "Official website is srmist.edu.in only. Report fake sites to cyberwatchdog@srmist.edu.in",
+        "note": "SRM explicitly warns about fraudulent calls/SMS/WhatsApp. Only contact via official channels.",
+        "verified": true,
+        "source": "srmist.edu.in/admission-india + applications.srmist.edu.in \u2014 March 2026"
+      }
+    },
+    {
+      "id": "MET",
+      "short_name": "MET",
+      "full_name": "MET",
+      "official_name": "Manipal Entrance Test",
+      "type": "Deemed University",
+      "conducting_body": "MAHE (Manipal Academy of Higher Education)",
+      "official_site": "https://manipal.edu/met",
+      "brand_color": "#005F8E",
+      "icon": "\ud83d\udd2c",
+      "popularity_score": 7.8,
+      "popularity_note": "~1 lakh applicants. MIT Manipal, Manipal Jaipur, SMIT campuses. Strong research culture.",
+      "fees": {
+        "general_standard_courses": 600,
+        "general_selected_courses": 1400,
+        "nri_usd": 50,
+        "currency": "INR",
+        "note": "Phase 1 registration fee. Phase 2 is separate application."
+      },
+      "exam_pattern": {
+        "total_marks": 240,
+        "total_questions": 60,
+        "subjects": [
+          "Physics (15 Q)",
+          "Chemistry (15 Q)",
+          "Mathematics (15 Q)",
+          "English (5 Q)",
+          "General Aptitude (10 Q)"
+        ],
+        "marking_scheme": "+4 correct, -1 wrong (MCQ); +4 correct, 0 wrong (NAT)",
+        "mode": "Computer Based Test (CBT) \u2014 Remote Proctored (home)",
+        "duration_minutes": 120,
+        "note": "Can be taken from home \u2014 no exam centre required"
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "Rank-based admission. No minimum cutoff.",
+        "board_requirement": "50% in Maths, Physics, and one of Chemistry/Biotechnology/Biology in Class 12"
+      },
+      "attempts": {
+        "max_per_year": 2,
+        "max_total": null,
+        "note": "Phase 1 (Apr) and Phase 2 (May) available. Best score considered."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "label": "Phase 1",
+          "registration_start": "2025-09-30",
+          "registration_end": "2026-03-23",
+          "slot_booking_start": "2026-03-31",
+          "slot_booking_end": "2026-04-02",
+          "admit_card_date": "2026-04-10",
+          "exam_dates": [
+            "2026-04-13",
+            "2026-04-14"
+          ],
+          "result_date": "2026-05-10",
+          "status": "upcoming",
+          "verified": true,
+          "source": "careers360.com + shiksha.com, March 2026"
+        },
+        {
+          "session": 2,
+          "label": "Phase 2",
+          "registration_start": "2026-03-27",
+          "registration_end": "2026-04-26",
+          "exam_dates": [
+            "2026-05-23",
+            "2026-05-24"
+          ],
+          "result_date": "2026-06-10",
+          "status": "upcoming",
+          "verified": true,
+          "source": "shiksha.com, March 2026"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-03-23",
+        "registration_status": "closed",
+        "registration_note": "Phase 1 registration closed Mar 23. Phase 2 open Apr 27\u2013May 26. Exam Phase 1: Apr 13\u201314.",
+        "exam_date": "2026-04-13",
+        "result_date": "2026-05-10",
+        "deadline_label": "MET Phase 2 registration",
+        "next_actionable_date": "2026-04-26",
+        "next_actionable_label": "MET Phase 2 registration opens",
+        "days_until_next": 30,
+        "days_label": "In 30 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "0820-2922213",
+          "0820-2922338"
+        ],
+        "email": "admissions@manipal.edu",
+        "hours": "9:00 AM \u2013 5:00 PM (Mon\u2013Sat)",
+        "address": "Admissions Office, MAHE, Madhav Nagar, Manipal \u2013 576104, Karnataka",
+        "contact_page": "https://manipal.edu/mu/admissions/contact-us.html",
+        "slot_booking_helpline": "1800-102-6781",
+        "note": "Use toll-free 1800-102-6781 for slot booking queries. admissions@manipal.edu for general queries.",
+        "verified": true,
+        "source": "manipal.edu + shiksha.com \u2014 March 2026"
+      }
+    },
+    {
+      "id": "COMED_K",
+      "short_name": "COMED-K",
+      "full_name": "COMEDK UGET",
+      "official_name": "Consortium of Medical Engineering and Dental Colleges of Karnataka \u2014 Undergraduate Entrance Test",
+      "type": "Karnataka Private Colleges",
+      "conducting_body": "COMEDK",
+      "official_site": "https://comedk.org",
+      "brand_color": "#4B0082",
+      "icon": "\u2695\ufe0f",
+      "popularity_score": 6.8,
+      "popularity_note": "~1.5 lakh applicants. Gateway to ~190 private engineering colleges in Karnataka. Good alternative to KCET.",
+      "fees": {
+        "all_categories": 1800,
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 180,
+        "total_questions": 180,
+        "subjects": [
+          "Physics (60 Q)",
+          "Chemistry (60 Q)",
+          "Mathematics (60 Q)"
+        ],
+        "marking_scheme": "+1 correct, 0 wrong (no negative marking)",
+        "mode": "Computer Based Test (CBT)",
+        "duration_minutes": 180
+      },
+      "qualifying": {
+        "passing_marks": 45,
+        "passing_note": "45% for general, 40% for SC/ST. Rank-based counselling for 190+ colleges.",
+        "board_requirement": "45% in PCM in Class 12"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "No limit on attempts."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2026-02-01",
+          "registration_end": "2026-03-23",
+          "exam_dates": [
+            "2026-05-09"
+          ],
+          "result_date": "2026-06-10",
+          "status": "upcoming",
+          "admit_card_date": "2026-04-29"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-03-23",
+        "registration_status": "closed",
+        "registration_note": "Registration closed Mar 23. Correction window Apr 10\u201313. Exam May 9.",
+        "exam_date": "2026-05-09",
+        "result_date": "2026-06-10",
+        "deadline_label": "COMEDK registration",
+        "next_actionable_date": "2026-05-09",
+        "next_actionable_label": "COMEDK UGET exam",
+        "days_until_next": 43,
+        "days_label": "In 43 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "080-46000000"
+        ],
+        "email": "helpdesk@comedk.org",
+        "hours": "10:00 AM \u2013 5:00 PM (Mon\u2013Fri, not Sat/Sun/holidays)",
+        "address": "#132, Second Floor, 11th Main, 17th Cross, Malleswaram, Bangalore \u2013 560055",
+        "contact_page": "https://www.comedk.org/contact-us",
+        "note": "COMEDK is strict about office hours. Raise clarification requests through official portal (\u20b9500 fee per clarification + refundable if upheld).",
+        "verified": true,
+        "source": "comedk.org/contact-us + ctet.co.in \u2014 March 2026"
+      }
+    },
+    {
+      "id": "IISER",
+      "short_name": "IISER",
+      "full_name": "IISER IAT",
+      "official_name": "IISER Aptitude Test",
+      "type": "Research / Science",
+      "conducting_body": "IISER (Indian Institutes of Science Education and Research)",
+      "official_site": "https://iiseradmission.in",
+      "brand_color": "#006E6E",
+      "icon": "\ud83e\uddea",
+      "popularity_score": 7.0,
+      "popularity_note": "~30,000 applicants. Highly selective. Free tuition + stipend for BS-MS students. Only for science stream.",
+      "fees": {
+        "general": 0,
+        "note": "No application fee \u2014 IISER charges zero fee for IAT registration",
+        "currency": "INR"
+      },
+      "exam_pattern": {
+        "total_marks": 180,
+        "total_questions": 60,
+        "subjects": [
+          "Biology (15 Q)",
+          "Chemistry (15 Q)",
+          "Mathematics (15 Q)",
+          "Physics (15 Q)"
+        ],
+        "marking_scheme": "+3 correct, -1 wrong",
+        "mode": "Computer Based Test (CBT)",
+        "duration_minutes": 180
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "No minimum marks. Rank-based. Top ranks from JEE Advanced, KVPY, and IAT are eligible for IISER admissions.",
+        "board_requirement": "60% in PCM/PCB in Class 12. KVPY/JEE Advanced qualification also provides direct entry channel."
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "Can attempt multiple years. Science stream (PCB or PCM) only."
+      },
+      "admission_channels": [
+        "KVPY stream (direct selection)",
+        "JEE Advanced rank (direct selection)",
+        "SCB channel \u2014 State/Central board toppers",
+        "IAT \u2014 IISER Aptitude Test (this exam)"
+      ],
+      "sessions": [
+        {
+          "session": 1,
+          "registration_start": "2026-03-05",
+          "registration_end": "2026-04-13",
+          "exam_dates": [
+            "2026-06-07"
+          ],
+          "result_date": "2026-07-15",
+          "status": "upcoming",
+          "admit_card_date": "2026-05-24",
+          "note": "IAT 2026 confirmed: exam June 7, 2026. IISER Berhampur is organising institute. 11 participating institutes including IIT Madras, IIT Guwahati, IISc, IACS Kolkata, IIEST Shibpur."
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-04-13",
+        "registration_status": "open",
+        "registration_note": "Registration open until Apr 13, 11:55 PM. Exam Jun 7.",
+        "exam_date": "2026-06-07",
+        "result_date": "2026-07-15",
+        "deadline_label": "IISER IAT registration",
+        "next_actionable_date": "2026-04-13",
+        "next_actionable_label": "IAT registration deadline",
+        "days_until_next": 17,
+        "days_label": "In 17 days"
+      },
+      "contact": {
+        "helpline_phone": [
+          "+91-7205457461"
+        ],
+        "email": "askjac2026@iiserbpr.ac.in",
+        "hours": "2:00 PM \u2013 5:00 PM (working days only)",
+        "address": "Joint Admission Committee, IISER Berhampur (Organising Institute for IAT 2026), Berhampur \u2013 760010, Odisha",
+        "contact_page": "https://iiseradmission.in",
+        "note": "IISER Berhampur is the organising institute for IAT 2026. Very limited hours \u2014 try email first.",
+        "verified": true,
+        "source": "freepressjournal.in IISER IAT 2026 registration article, March 5, 2026"
+      },
+      "participating_institutes": [
+        "IISER Berhampur",
+        "IISER Bhopal",
+        "IISER Kolkata",
+        "IISER Mohali",
+        "IISER Pune",
+        "IISER Thiruvananthapuram",
+        "IISER Tirupati",
+        "IIT Madras (BS)",
+        "IIT Guwahati (BS Biomedical)",
+        "IISc Bengaluru (BS Research)",
+        "IACS Kolkata",
+        "IIEST Shibpur"
+      ]
+    },
+    {
+      "id": "PSET",
+      "short_name": "PSET",
+      "full_name": "PESSAT / PES University",
+      "official_name": "PES University Scholastic Aptitude Test",
+      "type": "Private University (Bangalore)",
+      "conducting_body": "PES University, Bangalore",
+      "official_site": "https://pes.edu",
+      "admissions_portal": "https://admissions.pes.edu",
+      "brand_color": "#3D5A80",
+      "icon": "\ud83d\udcda",
+      "popularity_score": 7.4,
+      "popularity_note": "~50,000 applicants. Top private engineering university in Bangalore. NAAC A+. Strong placements \u2014 median \u20b912.47 LPA (2025).",
+      "important_note_2026": "PESSAT is NO LONGER conducted for B.Tech admissions from 2026 onwards. B.Tech admission is now via JEE Main or KCET scores. Students must separately apply on the PES admissions portal after results are out. PESSAT continues for BBA, BCA, B.Des, B.Pharm, Law and PG programs.",
+      "btech_admission_2026": {
+        "via_exams": [
+          "JEE Main 2026",
+          "KCET 2026"
+        ],
+        "apply_at": "https://admissions.pes.edu",
+        "application_deadline": "2026-06-30",
+        "note": "Apply on PES portal after JEE/KCET results. Upload scorecard. Separate from exam registration."
+      },
+      "fees": {
+        "pessat_registration": 1200,
+        "btech_application_pesu_portal": 500,
+        "currency": "INR",
+        "note": "PESSAT fee for non-BTech programs. BTech applicants only need to register on PES portal."
+      },
+      "exam_pattern": {
+        "note": "PESSAT for BTech discontinued 2026. For BTech, uses JEE Main / KCET pattern.",
+        "pessat_for_other_programs": {
+          "total_marks": 100,
+          "subjects": [
+            "Aptitude",
+            "English",
+            "Domain subject (varies by program)"
+          ],
+          "marking_scheme": "+1 correct, 0 wrong",
+          "mode": "Computer Based Test (CBT) \u2014 slot-based",
+          "duration_minutes": 90
+        }
+      },
+      "qualifying": {
+        "passing_marks": null,
+        "passing_note": "For BTech: rank-based on JEE Main percentile or KCET rank. No minimum JEE percentile stated, but practically 85+ percentile for CSE/ECE. KCET rank below 5000 for good branches.",
+        "board_requirement": "60% aggregate in PCM in Class 12"
+      },
+      "attempts": {
+        "max_per_year": 1,
+        "max_total": null,
+        "note": "PESSAT: once per year. JEE Main: 2 sessions per year. No limit on total yearly attempts."
+      },
+      "sessions": [
+        {
+          "session": 1,
+          "label": "PESSAT (non-BTech programs)",
+          "registration_start": "2025-09-05",
+          "registration_end": "2026-04-30",
+          "exam_window_start": "2026-04-21",
+          "exam_window_end": "2026-05-12",
+          "result_note": "Declared within 3 days of test",
+          "status": "upcoming",
+          "verified": true,
+          "source": "jnaniv.com + collegedunia, Feb-Mar 2026"
+        },
+        {
+          "session": 2,
+          "label": "BTech via JEE/KCET \u2014 PES portal application",
+          "registration_start": "2026-04-20",
+          "registration_end": "2026-06-30",
+          "note": "Apply on admissions.pes.edu after JEE Main Session 2 results (Apr 20) or KCET results (May 30)",
+          "status": "upcoming"
+        }
+      ],
+      "app_display": {
+        "registration_deadline": "2026-06-30",
+        "registration_status": "open",
+        "registration_note": "BTech: Apply on admissions.pes.edu after JEE/KCET results. No PESSAT for BTech 2026. PESSAT for other programs open until Apr 30.",
+        "exam_date": "2026-04-21",
+        "result_date": "2026-05-15",
+        "deadline_label": "PES BTech portal deadline",
+        "next_actionable_date": "2026-04-20",
+        "next_actionable_label": "JEE results out \u2014 apply on PES portal",
+        "days_until_next": 24,
+        "days_label": "In 24 days"
+      },
+      "campuses": [
+        "Ring Road Campus (RR) \u2014 Main campus, Bangalore",
+        "Electronic City Campus (EC) \u2014 Bangalore",
+        "Hanumanthnagar Campus \u2014 Bangalore"
+      ],
+      "contact": {
+        "helpline_phone": [
+          "080-26721983",
+          "080-26721985"
+        ],
+        "email": "admissions@pes.edu",
+        "hours": "9:00 AM \u2013 5:00 PM (Mon\u2013Sat)",
+        "address": "PES University, 100 Feet Ring Road, BSK III Stage, Bangalore \u2013 560085",
+        "contact_page": "https://admissions.pes.edu",
+        "pessat_email": "pessat@pes.edu",
+        "note": "Use admissions@pes.edu for BTech (JEE/KCET route) queries. Use pessat@pes.edu for PESSAT (non-BTech) queries.",
+        "verified": true,
+        "source": "pes.edu + collegedunia.com PESSAT page \u2014 March 2026"
+      }
+    }
+  ],
+  "nios_biology_route": {
+    "_description": "This section powers the PCM \u2192 NEET pathway screen in After12. Shown only when student selects PCM stream in settings.",
+    "summary": {
+      "what": "A PCM Class 12 student can appear for Biology as an additional subject through NIOS (National Institute of Open Schooling) and become eligible for NEET UG.",
+      "why_nios": "NIOS is fully recognised by NMC and NTA. It allows single-subject registration \u2014 you only need to add Biology, not repeat all of Class 12.",
+      "timeline": "Fastest route: register now \u2192 appear in ODE (On-Demand Exam) in 2\u20133 months \u2192 get result in ~45 days \u2192 apply for NEET next cycle.",
+      "official_site": "https://www.nios.ac.in",
+      "admissions_portal": "https://sdmis.nios.ac.in"
+    },
+    "subject": {
+      "name": "Biology",
+      "code": "314",
+      "level": "Senior Secondary (Class 12 equivalent)",
+      "includes_practical": true,
+      "practical_required_for_neet": true,
+      "practical_note": "Theory + Practical both required. Practicals conducted at NIOS accredited study centres. Must complete practical before NEET counselling.",
+      "syllabus": "NCERT Biology Class 11 and 12 \u2014 same syllabus as NEET Biology. Highly aligned."
+    },
+    "two_routes": {
+      "route_a": {
+        "name": "Public Exam (recommended for most students)",
+        "description": "Register for NIOS Sr. Secondary as a new learner. Appear in the scheduled April/May or October/November public exam.",
+        "admission_streams": [
+          {
+            "stream": "Stream 1 \u2014 Block I (for Apr/May exam)",
+            "registration_window": "March to September each year",
+            "exam_session": "April/May of following year",
+            "note": "Best if you have 6+ months. Study alongside JEE prep."
+          },
+          {
+            "stream": "Stream 1 \u2014 Block II (for Oct/Nov exam)",
+            "registration_window": "September to March each year",
+            "exam_session": "October/November of same year",
+            "note": "Faster cycle. Results in December."
+          }
+        ],
+        "fees": {
+          "registration_admission_fee": 600,
+          "exam_fee_theory": 600,
+          "exam_fee_practical": 250,
+          "total_approx": 1450,
+          "currency": "INR",
+          "note": "Fees vary slightly by stream and category. SC/ST may get concession."
+        },
+        "how_to_apply": [
+          "Visit sdmis.nios.ac.in",
+          "Click 'New Registration' under Stream 1",
+          "Select Sr. Secondary level",
+          "Choose Biology (Code 314) as your subject",
+          "Upload Class 12 marksheet (PCM), Aadhaar, photo, signature",
+          "Pay registration + admission fee online",
+          "You will receive an Enrolment Number \u2014 save it",
+          "Pay exam fee separately when the exam fee window opens",
+          "Download hall ticket from nios.ac.in before exam"
+        ],
+        "result_timeline": "June 2026 for April/May session. December 2026 for Oct/Nov session."
+      },
+      "route_b": {
+        "name": "On-Demand Exam / ODES (fastest route)",
+        "description": "Existing NIOS learners can appear for Biology whenever they are ready \u2014 no fixed exam date. Exam held monthly except April, May, October, November.",
+        "eligibility_note": "Must already be a registered NIOS learner (have an Enrolment Number). Stream 1 learners can use ODES only after appearing in their first public exam.",
+        "fees": {
+          "ode_fee_theory": 600,
+          "ode_fee_practical": 250,
+          "total_approx": 850,
+          "currency": "INR"
+        },
+        "how_to_apply": [
+          "Log in at nios.ac.in with your Enrolment Number",
+          "Go to On-Demand Examination System (ODES)",
+          "Select Biology (Code 314)",
+          "Choose preferred exam centre and date",
+          "Pay fee online",
+          "Appear for exam at selected NIOS centre or Kendriya Vidyalaya"
+        ],
+        "result_timeline": "Results declared within 45 days of exam. Published at results.nios.ac.in.",
+        "blackout_months": [
+          "April",
+          "May",
+          "October",
+          "November"
+        ],
+        "centres": "NIOS HQ (Noida) and selected Kendriya Vidyalayas across India. Not available in all cities \u2014 check nios.ac.in for centre list."
+      }
+    },
+    "step_by_step_for_pcm_student": [
+      {
+        "step": 1,
+        "action": "Verify your Class 12 marks",
+        "detail": "You need 50% aggregate in PCB (Physics + Chemistry + Biology combined) for NEET eligibility. Since you have PCM, your Physics and Chemistry marks will carry over. Your Biology score from NIOS will be the third component.",
+        "tip": "If you scored 70%+ in PCM, getting 50% aggregate in PCB is very achievable even with moderate Biology marks."
+      },
+      {
+        "step": 2,
+        "action": "Register with NIOS for Biology (Code 314)",
+        "detail": "Visit sdmis.nios.ac.in. Register under Stream 2, 3, or 4 if you have already passed Class 12. You are adding a single additional subject \u2014 not re-doing Class 12.",
+        "tip": "Stream 2/3/4 is for students who have already passed 12th from another board. This is your stream.",
+        "fee": "~\u20b9720 per subject for Stream 2/3/4 (includes registration + exam fee)"
+      },
+      {
+        "step": 3,
+        "action": "Prepare Biology from NCERT",
+        "detail": "NIOS Biology syllabus (Code 314) is nearly identical to NEET Biology. Use NCERT Class 11 and 12 Biology textbooks. This is the same material you would study for NEET anyway.",
+        "tip": "Focus on Chapters: Cell Biology, Genetics, Human Physiology, Plant Physiology, Ecology, Evolution. These are high-weight in both NIOS and NEET."
+      },
+      {
+        "step": 4,
+        "action": "Complete the Practical component",
+        "detail": "Biology has a practical exam at an NIOS accredited study centre. This is mandatory \u2014 without the practical, NIOS will not issue the marksheet, and NEET counselling will reject your documents.",
+        "tip": "Book your practical slot early. Practical centres fill up. Contact your nearest NIOS Regional Centre at 1800-180-9393."
+      },
+      {
+        "step": 5,
+        "action": "Appear for the exam and get your marksheet",
+        "detail": "Once you pass, NIOS issues a marksheet. Keep both your original Class 12 board marksheet (PCM) AND the NIOS Biology marksheet. NTA recognises NIOS as equivalent for NEET.",
+        "tip": "Results declared in June (Apr session) or December (Oct session). ODE results within 45 days."
+      },
+      {
+        "step": 6,
+        "action": "Apply for NEET with both marksheets",
+        "detail": "When filling the NEET application form, select the appropriate eligibility code for 'Additional subject from different board'. Upload both marksheets during NEET counselling.",
+        "tip": "Keep originals safe. NEET counselling requires in-person document verification."
+      }
+    ],
+    "important_warnings": [
+      {
+        "level": "critical",
+        "warning": "Legal status \u2014 provisional eligibility",
+        "detail": "As of 2026, PCM students with additional Biology are allowed to appear for NEET provisionally. There are pending Supreme Court Special Leave Petitions (SLPs) filed by MCI. Final admission to MBBS is subject to the court's decision. Monitor NMC website for updates."
+      },
+      {
+        "level": "important",
+        "warning": "Practical exam is mandatory",
+        "detail": "Do not skip the Biology practical. Without it, your NIOS marksheet will be incomplete and NEET counselling will reject your documents."
+      },
+      {
+        "level": "important",
+        "warning": "Both Class 11 and 12 Biology required",
+        "detail": "NMC requires Biology to have been studied for both Class 11 and 12. NIOS Biology (Code 314) covers both years' syllabus in one exam \u2014 this satisfies the requirement."
+      },
+      {
+        "level": "info",
+        "warning": "NIOS not available in all cities for ODE",
+        "detail": "On-Demand Exams are only at NIOS HQ (Noida) and selected Kendriya Vidyalayas. Public exams (Apr/May, Oct/Nov) have wider centre availability across India."
+      }
+    ],
+    "contact": {
+      "nios_helpline": "1800-180-9393 (Toll Free)",
+      "nios_email_admissions": "lsc@nios.ac.in",
+      "nios_email_ode": "odes@nios.ac.in",
+      "official_site": "https://www.nios.ac.in",
+      "admissions_portal": "https://sdmis.nios.ac.in",
+      "results_portal": "https://results.nios.ac.in"
+    },
+    "app_config": {
+      "show_this_screen": "Only when student selects PCM stream in Settings",
+      "setting_key": "student_stream",
+      "setting_value_to_show": "PCM",
+      "screen_title": "Switch to NEET? Here's how.",
+      "screen_subtitle": "PCM students can add Biology via NIOS and become NEET eligible"
+    }
+  }
+}

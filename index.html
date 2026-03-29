@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  After12th — Indian Entrance Exam Tracker
+  Built by Rishabh Rukmangadha, mindBlore
+  contact: rishabh@mindblore.com
+  © 2026 mindBlore. All rights reserved.
+  
+  MIT License — free to use with attribution.
+  Data is manually verified annually. Please credit mindBlore if reused.
+  https://mindblore.com
+-->
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#0A0A14"/>
+<title>After12th</title>
+<link rel="manifest" href="manifest.json"/>
+
+<!-- Google Analytics — replace GA_MEASUREMENT_ID with your ID from analytics.google.com -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script> -->
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:#0A0A14;color:#F0EFF8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased;}
+#app{height:100dvh;max-width:430px;margin:0 auto;position:relative;overflow:hidden;}
+
+/* SCREENS */
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:#0A0A14;}
+.screen.hidden{display:none;}
+
+/* SPLASH */
+#screen-splash{align-items:center;justify-content:center;gap:16px;}
+.logo{width:80px;height:80px;border-radius:24px;background:linear-gradient(135deg,#7C6FFF,#3ECFCF);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;}
+.splash-title{font-size:36px;font-weight:800;color:#fff;letter-spacing:-1px;}
+.splash-sub{font-size:14px;color:#9896B8;text-align:center;line-height:1.6;max-width:260px;}
+.btn-main{width:280px;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#7C6FFF,#3ECFCF);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;}
+.splash-note{font-size:12px;color:#5C5A7A;}
+.splash-brand{font-size:11px;color:#3A3A5C;margin-top:4px;}
+
+/* HEADERS */
+.page-hdr{padding:12px 16px;flex-shrink:0;}
+.page-hdr h1{font-size:26px;font-weight:700;color:#fff;}
+.page-hdr p{font-size:13px;color:#9896B8;margin-top:2px;}
+
+/* WATCHLIST GRID — Chrome fix */
+.exam-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  padding:4px 14px 8px;
+  overflow-y:auto;
+  flex:1;
+  width:100%;
+  box-sizing:border-box;
+}
+.exam-tile{
+  position:relative;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  gap:3px;
+  border:2px solid transparent;
+  transition:all 0.2s;
+  min-width:0;
+  min-height:0;
+  aspect-ratio:1/1;
+  /* Chrome fix — explicit sizing */
+  width:100%;
+  overflow:hidden;
+}
+.exam-tile.off{border:2px dashed rgba(255,255,255,0.15)!important;background:#16162A!important;}
+.exam-tile.off .exam-tile-name{color:#5C5A7A;}
+.exam-tile.off .exam-tile-type{color:#3A3A5C;}
+.exam-tile-name{font-size:13px;font-weight:800;color:#fff;text-align:center;}
+.exam-tile-type{font-size:9px;color:rgba(255,255,255,0.65);text-align:center;padding:0 4px;line-height:1.3;}
+.tick{position:absolute;top:6px;right:6px;width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:9px;color:#111;font-weight:800;}
+.grid-footer{padding:8px 16px 12px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+.sel-count{font-size:12px;color:#9896B8;margin-bottom:8px;}
+
+/* BUTTONS */
+.btn-primary{width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#7C6FFF,#3ECFCF);color:#fff;font-size:15px;font-weight:700;cursor:pointer;}
+.btn-primary:disabled{background:#252540;color:#5C5A7A;cursor:not-allowed;}
+.btn-ghost{background:none;border:none;color:#7C6FFF;font-size:13px;font-weight:600;cursor:pointer;padding:6px 8px;}
+
+/* SETUP */
+.setup-scroll{flex:1;overflow-y:auto;padding:0 16px 16px;display:flex;flex-direction:column;gap:12px;}
+.field-lbl{font-size:11px;font-weight:600;color:#5C5A7A;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:5px;}
+.field-inp{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.08);background:#1E1E32;color:#F0EFF8;font-size:14px;outline:none;}
+.field-inp:focus{border-color:#7C6FFF;}
+.field-sel{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.08);background:#1E1E32;color:#F0EFF8;font-size:14px;outline:none;}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-radius:10px;background:#1E1E32;}
+.tog-lbl{font-size:13px;color:#F0EFF8;}
+.tog{width:40px;height:24px;border-radius:12px;position:relative;cursor:pointer;flex-shrink:0;}
+.tog.on{background:#7C6FFF;}.tog.off{background:#252540;}
+.tok{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform 0.2s;}
+.tog.on .tok{transform:translateX(16px);}
+.sec-title{font-size:11px;font-weight:700;color:#5C5A7A;text-transform:uppercase;letter-spacing:0.6px;}
+.stream-row{display:flex;gap:8px;}
+.stream-btn{flex:1;padding:11px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.08);background:#1E1E32;color:#9896B8;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all 0.15s;}
+.stream-btn.active{border-color:#7C6FFF;background:rgba(124,111,255,0.15);color:#7C6FFF;}
+
+/* CARD NAV */
+.card-nav{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+.dots{display:flex;gap:5px;}
+.dot{width:5px;height:5px;border-radius:50%;background:#252540;transition:all 0.2s;}
+.dot.active{background:#7C6FFF;width:16px;border-radius:2.5px;}
+.card-area{flex:1;overflow:hidden;position:relative;}
+.card{position:absolute;inset:0;padding:14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;transition:transform 0.3s ease;}
+.card.next{transform:translateX(100%);}
+.card.prev{transform:translateX(-100%);}
+.card.active{transform:translateX(0);}
+
+/* CARD CONTENT */
+.card-hdr{display:flex;align-items:flex-start;gap:12px;flex-shrink:0;}
+.card-logo-sq{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;}
+.card-exam-name{font-size:26px;font-weight:800;color:#fff;line-height:1;}
+.card-exam-full{font-size:11px;color:#9896B8;margin-top:3px;line-height:1.3;}
+.upill{padding:5px 10px;border-radius:20px;font-size:10px;font-weight:700;margin-left:auto;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+.upill.urgent{background:rgba(255,77,106,0.18);color:#FF4D6A;}
+.upill.soon{background:rgba(255,184,48,0.18);color:#FFB830;}
+.upill.ok{background:rgba(45,219,160,0.18);color:#2DDBA0;}
+.upill.closed{background:#1E1E32;color:#5C5A7A;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.itile{background:#1E1E32;border-radius:10px;padding:10px 12px;}
+.itile.hl{background:rgba(124,111,255,0.12);border:1px solid rgba(124,111,255,0.25);}
+.itl{font-size:10px;color:#5C5A7A;text-transform:uppercase;letter-spacing:0.4px;font-weight:600;margin-bottom:3px;}
+.itv{font-size:13px;font-weight:600;color:#F0EFF8;}
+.its{font-size:11px;color:#9896B8;margin-top:2px;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.stile{background:#1E1E32;border-radius:10px;padding:10px 8px;text-align:center;}
+.sv{font-size:17px;font-weight:800;color:#F0EFF8;}
+.sl{font-size:9px;color:#5C5A7A;margin-top:2px;text-transform:uppercase;letter-spacing:0.3px;}
+.pop-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#1E1E32;border-radius:10px;}
+.pop-lbl{font-size:12px;color:#9896B8;white-space:nowrap;font-weight:600;}
+.pop-track{flex:1;height:6px;background:#252540;border-radius:3px;overflow:hidden;}
+.pop-fill{height:100%;background:linear-gradient(90deg,#7C6FFF,#3ECFCF);border-radius:3px;}
+.pop-score{font-size:12px;font-weight:700;color:#9896B8;white-space:nowrap;}
+.contact-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#1E1E32;border-radius:10px;text-decoration:none;}
+.cicon{width:28px;height:28px;border-radius:8px;background:#252540;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.clbl{font-size:10px;color:#5C5A7A;}
+.cval{font-size:12px;font-weight:600;color:#7C6FFF;}
+.dl-strip{border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.dl-strip.urgent{background:rgba(255,77,106,0.1);}
+.dl-strip.soon{background:rgba(255,184,48,0.1);}
+.dl-strip.ok{background:rgba(45,219,160,0.08);}
+.dl-strip.closed{background:#1E1E32;}
+.dl-days{font-size:22px;font-weight:800;}
+.dl-days.urgent{color:#FF4D6A;}.dl-days.soon{color:#FFB830;}.dl-days.ok{color:#2DDBA0;}.dl-days.closed{color:#5C5A7A;}
+.dl-sub{font-size:11px;color:#9896B8;margin-top:2px;}
+.dl-prog{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:6px;overflow:hidden;}
+.dl-fill{height:100%;border-radius:2px;}
+.swipe-hint{text-align:center;font-size:11px;color:#5C5A7A;padding:6px;flex-shrink:0;}
+
+/* SHARE BUTTON */
+.share-bar{padding:8px 16px;flex-shrink:0;}
+.btn-share{width:100%;padding:12px;border-radius:12px;border:none;background:rgba(37,213,75,0.12);color:#25D34B;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(37,213,75,0.2);}
+.btn-feedback{width:100%;padding:11px;border-radius:12px;border:1px solid rgba(255,184,48,0.2);background:rgba(255,184,48,0.08);color:#FFB830;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* FEEDBACK */
+.feedback-bar{padding:6px 16px 10px;flex-shrink:0;}
+.feedback-inner{background:#1E1E32;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.feedback-lbl{font-size:11px;color:#9896B8;}
+.stars{display:flex;gap:4px;}
+.star{font-size:22px;cursor:pointer;transition:transform 0.15s;line-height:1;color:#252540;-webkit-text-stroke:1px #5C5A7A;}
+.star.active{color:#FFB830;-webkit-text-stroke:0;}
+.star:active{transform:scale(1.3);}
+.feedback-thanks{font-size:11px;color:#2DDBA0;display:none;}
+
+/* ALERTS */
+.alert-list{flex:1;overflow-y:auto;padding:0 16px;}
+.aitem{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.alogo{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;}
+.aname{font-size:13px;font-weight:700;color:#F0EFF8;}
+.adetail{font-size:11px;color:#9896B8;margin-top:1px;}
+.aextra{font-size:10px;color:#5C5A7A;margin-top:1px;}
+.adays{margin-left:auto;text-align:right;flex-shrink:0;}
+.anum{font-size:17px;font-weight:800;}
+.anum.urgent{color:#FF4D6A;}.anum.soon{color:#FFB830;}.anum.ok{color:#2DDBA0;}.anum.closed{color:#5C5A7A;}
+.aunit{font-size:10px;color:#5C5A7A;}
+.alert-empty{text-align:center;padding:48px 24px;color:#5C5A7A;font-size:14px;line-height:1.7;}
+
+/* NIOS */
+.nios-scroll{flex:1;overflow-y:auto;padding:0 16px 16px;display:flex;flex-direction:column;gap:12px;}
+.nios-hero{background:rgba(45,219,160,0.08);border:1px solid rgba(45,219,160,0.2);border-radius:14px;padding:16px;}
+.nios-hero-title{font-size:16px;font-weight:700;color:#2DDBA0;margin-bottom:6px;}
+.nios-hero-sub{font-size:13px;color:#9896B8;line-height:1.5;}
+.step-card{background:#1E1E32;border-radius:10px;padding:12px;display:flex;gap:12px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:#7C6FFF;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;}
+.step-action{font-size:13px;font-weight:600;color:#F0EFF8;margin-bottom:3px;}
+.step-detail{font-size:12px;color:#9896B8;line-height:1.5;}
+.step-tip{font-size:11px;color:#3ECFCF;margin-top:5px;}
+.warn-card{border-radius:10px;padding:11px 13px;display:flex;gap:10px;}
+.warn-card.critical{background:rgba(255,77,106,0.1);border:1px solid rgba(255,77,106,0.2);}
+.warn-card.important{background:rgba(255,184,48,0.1);border:1px solid rgba(255,184,48,0.2);}
+.warn-card.info{background:#1E1E32;}
+.warn-icon{font-size:16px;flex-shrink:0;}
+.warn-title{font-size:12px;font-weight:700;color:#F0EFF8;margin-bottom:2px;}
+.warn-text{font-size:11px;color:#9896B8;line-height:1.5;}
+.route-tog{display:flex;background:#1E1E32;border-radius:10px;padding:4px;gap:4px;}
+.route-btn{flex:1;padding:9px;border-radius:8px;border:none;background:none;color:#9896B8;font-size:12px;font-weight:600;cursor:pointer;}
+.route-btn.active{background:#7C6FFF;color:#fff;}
+
+/* SETTINGS */
+.settings-scroll{flex:1;overflow-y:auto;padding:0 16px 16px;}
+.set-sec{font-size:10px;font-weight:700;color:#5C5A7A;text-transform:uppercase;letter-spacing:0.8px;padding:14px 0 6px;}
+.set-card{background:#1E1E32;border-radius:14px;overflow:hidden;margin-bottom:6px;}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.set-row:last-child{border-bottom:none;}
+.set-lbl{font-size:13px;color:#F0EFF8;}
+.set-val{font-size:13px;color:#9896B8;}
+.set-val.ac{color:#7C6FFF;font-weight:600;}
+.profile-card{display:flex;align-items:center;gap:12px;padding:14px;background:#1E1E32;border-radius:14px;margin-bottom:6px;}
+.pavatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C6FFF,#3ECFCF);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.pname{font-size:14px;font-weight:700;color:#F0EFF8;}
+.psub{font-size:11px;color:#9896B8;margin-top:2px;}
+.pills{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px 6px;}
+.pill{padding:5px 11px;border-radius:20px;font-size:10px;font-weight:800;color:#fff;}
+.edit-lnk{padding:8px 14px 12px;font-size:12px;color:#7C6FFF;font-weight:600;cursor:pointer;display:block;}
+.ver-note{text-align:center;padding:12px 0 4px;font-size:11px;color:#5C5A7A;}
+.credit-note{text-align:center;padding:0 0 16px;font-size:10px;color:#3A3A5C;}
+
+/* BOTTOM TAB */
+.btab{height:56px;display:flex;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0);}
+.tbb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;cursor:pointer;color:#5C5A7A;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;}
+.tbb.active{color:#7C6FFF;}
+.tbi{font-size:18px;line-height:1;}
+
+::-webkit-scrollbar{width:0;}
+
+/* INFO MODAL */
+.info-icon{position:absolute;top:14px;right:16px;width:28px;height:28px;border-radius:50%;background:#1E1E32;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;color:#5C5A7A;z-index:10;flex-shrink:0;}
+.info-icon:hover{color:#7C6FFF;border-color:#7C6FFF;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:flex;align-items:flex-end;justify-content:center;padding:0 0 24px;}
+.modal-overlay.hidden{display:none;}
+.modal-box{background:#1A1A2E;border-radius:20px 20px 14px 14px;padding:24px;max-width:400px;width:calc(100% - 32px);border:1px solid rgba(255,255,255,0.08);}
+.modal-title{font-size:16px;font-weight:700;color:#F0EFF8;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.modal-body{font-size:13px;color:#9896B8;line-height:1.7;}
+.modal-body a{color:#7C6FFF;}
+.modal-close{width:100%;margin-top:18px;padding:12px;border-radius:12px;border:none;background:#252540;color:#9896B8;font-size:14px;font-weight:600;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- SPLASH -->
+<div class="screen" id="screen-splash">
+  <div class="info-icon" id="info-btn">ⓘ</div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px">
+    <div class="logo">A12</div>
+    <div class="splash-title">After12th</div>
+    <div class="splash-sub">Every entrance exam. Every deadline.<br>Never miss what matters.</div>
+    <button class="btn-main" id="splash-start">Get Started — It's Free</button>
+    <div class="splash-note">No account · Works offline · Updated 2026</div>
+    <div class="splash-brand">by mindBlore</div>
+  </div>
+</div>
+
+<!-- WATCHLIST -->
+<div class="screen hidden" id="screen-watchlist">
+  <div class="page-hdr"><h1>Your Exams</h1><p>Tap to add to your watchlist</p></div>
+  <div class="exam-grid" id="exam-grid"></div>
+  <div class="grid-footer">
+    <div class="sel-count" id="sel-count">No exams selected</div>
+    <button class="btn-primary" id="btn-continue" disabled>Continue →</button>
+  </div>
+</div>
+
+<!-- SETUP -->
+<div class="screen hidden" id="screen-setup">
+  <div class="page-hdr"><h1>Quick Setup</h1><p>Takes 30 seconds</p></div>
+  <div class="setup-scroll">
+    <div>
+      <div class="field-lbl">Your stream</div>
+      <div class="stream-row">
+        <button class="stream-btn active" data-stream="PCM">PCM</button>
+        <button class="stream-btn" data-stream="PCB">PCB</button>
+        <button class="stream-btn" data-stream="Commerce">Commerce</button>
+      </div>
+    </div>
+    <div>
+      <div class="field-lbl">Your name</div>
+      <input class="field-inp" id="inp-name" placeholder="e.g. Arjun Sharma"/>
+    </div>
+    <div>
+      <div class="field-lbl">Alert me how early</div>
+      <select class="field-sel" id="sel-days">
+        <option value="30">30 days before deadline</option>
+        <option value="14" selected>14 days before deadline</option>
+        <option value="7">7 days before deadline</option>
+        <option value="3">3 days before deadline</option>
+      </select>
+    </div>
+    <div class="tog-row" id="nios-row" style="background:rgba(45,219,160,0.08);border:1px solid rgba(45,219,160,0.2);">
+      <span class="tog-lbl" style="color:#2DDBA0">🧪 PCM → NEET via NIOS guide</span>
+      <button class="btn-ghost" id="nios-link-setup">View →</button>
+    </div>
+    <button class="btn-primary" id="btn-save">Start Tracking →</button>
+    <div style="font-size:11px;color:#3A3A5C;text-align:center;margin-top:-4px">Your data stays on your device only</div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="screen hidden" id="screen-cards">
+  <div class="card-nav">
+    <button class="btn-ghost" id="btn-edit">Edit</button>
+    <div class="dots" id="card-dots"></div>
+    <button class="btn-ghost" id="btn-next">Next ›</button>
+  </div>
+  <div class="card-area" id="card-area"></div>
+  <div class="swipe-hint">← Swipe · sorted by deadline →</div>
+  <!-- WhatsApp Share -->
+  <div class="share-bar">
+    <button class="btn-share" id="btn-share">
+      <span style="font-size:16px">💬</span> Share After12th on WhatsApp
+    </button>
+  </div>
+  <!-- Feedback button -->
+  <div class="feedback-bar">
+    <button class="btn-feedback" id="btn-feedback">⭐ Rate &amp; give feedback</button>
+  </div>
+  <div class="btab">
+    <button class="tbb active" data-tab="exams"><div class="tbi">📋</div>Exams</button>
+    <button class="tbb" data-tab="alerts"><div class="tbi">🔔</div>Alerts</button>
+    <button class="tbb" data-tab="settings"><div class="tbi">⚙️</div>Settings</button>
+  </div>
+</div>
+
+<!-- ALERTS -->
+<div class="screen hidden" id="screen-alerts">
+  <div class="page-hdr"><h1>Deadlines</h1><p>Sorted by what's coming next</p></div>
+  <div class="alert-list" id="alert-list"></div>
+  <div class="btab">
+    <button class="tbb" data-tab="exams"><div class="tbi">📋</div>Exams</button>
+    <button class="tbb active" data-tab="alerts"><div class="tbi">🔔</div>Alerts</button>
+    <button class="tbb" data-tab="settings"><div class="tbi">⚙️</div>Settings</button>
+  </div>
+</div>
+
+<!-- NIOS -->
+<div class="screen hidden" id="screen-nios">
+  <div class="page-hdr" style="display:flex;align-items:flex-start;gap:12px">
+    <div><h1>PCM → NEET</h1><p>Add Biology via NIOS. Become eligible.</p></div>
+    <button class="btn-ghost" id="btn-back-nios" style="margin-left:auto;flex-shrink:0">← Back</button>
+  </div>
+  <div class="nios-scroll">
+    <div class="nios-hero">
+      <div class="nios-hero-title">You can appear for NEET</div>
+      <div class="nios-hero-sub">PCM students with Biology as an additional subject via NIOS are eligible for NEET UG. No need to repeat Class 12. NIOS Biology (Code 314) covers the full 2-year syllabus — identical to NEET Biology.</div>
+    </div>
+    <div>
+      <div class="sec-title" style="margin-bottom:8px">Choose your route</div>
+      <div class="route-tog">
+        <button class="route-btn active" data-route="A">Public Exam (recommended)</button>
+        <button class="route-btn" data-route="B">On-Demand / ODES</button>
+      </div>
+    </div>
+    <div id="nios-route-detail"></div>
+    <div class="sec-title" style="margin-bottom:8px">Step-by-step guide</div>
+    <div id="nios-steps" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="sec-title" style="margin-bottom:8px">Important to know</div>
+    <div id="nios-warnings" style="display:flex;flex-direction:column;gap:7px"></div>
+    <div class="sec-title" style="margin-bottom:8px">Contact NIOS</div>
+    <div id="nios-contact" style="display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="screen hidden" id="screen-settings">
+  <div class="page-hdr" style="display:flex;align-items:center;justify-content:space-between">
+    <h1>Settings</h1>
+    <button class="btn-ghost" id="btn-close-settings">✕ Close</button>
+  </div>
+  <div class="settings-scroll">
+    <div class="set-sec">Student</div>
+    <div class="profile-card">
+      <div class="pavatar">👨‍🎓</div>
+      <div>
+        <div class="pname" id="set-profile-name">—</div>
+        <div class="psub" id="set-profile-sub">PCM · Class XII</div>
+      </div>
+    </div>
+    <div class="set-sec">Preferences</div>
+    <div class="set-card">
+      <div class="set-row"><span class="set-lbl">Alert timing</span><span class="set-val ac" id="set-days">14 days before</span></div>
+    </div>
+    <div class="set-sec">Watchlist</div>
+    <div class="set-card">
+      <div class="pills" id="watchlist-pills"></div>
+      <div class="edit-lnk" id="edit-watchlist-link">Edit watchlist →</div>
+    </div>
+    <div class="set-sec">PCM students</div>
+    <div class="set-card">
+      <div class="set-row" id="nios-link" style="cursor:pointer">
+        <span class="set-lbl" style="color:#2DDBA0">🧪 Switch to NEET via NIOS</span>
+        <span class="set-val ac">Guide →</span>
+      </div>
+    </div>
+    <div class="set-sec">Share &amp; Feedback</div>
+    <div class="set-card">
+      <div class="set-row" id="settings-share-btn" style="cursor:pointer">
+        <span class="set-lbl">💬 Share on WhatsApp</span>
+        <span class="set-val ac">→</span>
+      </div>
+      <div class="set-row" id="settings-feedback-btn" style="cursor:pointer">
+        <span class="set-lbl">⭐ Rate &amp; give feedback</span>
+        <span class="set-val ac">→</span>
+      </div>
+    </div>
+    <div class="set-sec">About</div>
+    <div class="set-card">
+      <div class="set-row"><span class="set-lbl">Version</span><span class="set-val">v1.0 · Mar 2026</span></div>
+      <div class="set-row"><span class="set-lbl">Data privacy</span><span class="set-val">On device only</span></div>
+      <div class="set-row" style="cursor:pointer" onclick="window.open('mailto:rishabh@mindblore.com')">
+        <span class="set-lbl">Contact</span><span class="set-val ac">rishabh@mindblore.com</span>
+      </div>
+    </div>
+    <div class="ver-note">© 2026 mindBlore · After12th</div>
+    <div class="credit-note">Built by Rishabh Rukmangadha · MIT License</div>
+  </div>
+  <div class="btab">
+    <button class="tbb" data-tab="exams"><div class="tbi">📋</div>Exams</button>
+    <button class="tbb" data-tab="alerts"><div class="tbi">🔔</div>Alerts</button>
+    <button class="tbb active" data-tab="settings"><div class="tbi">⚙️</div>Settings</button>
+  </div>
+</div>
+
+  <!-- About / License Modal -->
+  <div class="modal-overlay hidden" id="info-modal">
+    <div class="modal-box">
+      <div class="modal-title">ⓘ About After12th</div>
+      <div class="modal-body">
+        <strong style="color:#F0EFF8">After12th</strong> is a free app to track Indian entrance exam deadlines — JEE, NEET, KCET, VIT, SRM, MET, COMEDK, IISER and PES.<br><br>
+        <strong style="color:#F0EFF8">Built by</strong> Rishabh Rukmangadha<br>
+        <strong style="color:#F0EFF8">Company</strong> mindBlore, Bangalore<br>
+        <strong style="color:#F0EFF8">Contact</strong> <a href="mailto:rishabh@mindblore.com">rishabh@mindblore.com</a><br><br>
+        <strong style="color:#F0EFF8">License</strong> MIT — free to use and modify with attribution.<br>
+        Data is manually verified annually. Please credit mindBlore if reused.<br><br>
+        <span style="color:#5C5A7A;font-size:11px">© 2026 mindBlore · Your data stays on your device only · No tracking without consent</span>
+      </div>
+      <button class="modal-close" id="info-modal-close">Close</button>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<script>
+// ── STATE ──
+const S={
+  exams:[],watchlist:[],
+  contact:{name:'',alertDays:14,stream:'PCM'},
+  currentCard:0,niosRoute:'A',onboarded:false,rating:0
+};
+const TODAY=new Date();TODAY.setHours(0,0,0,0);
+const APP_URL='https://after12.netlify.app'; // update after deploy
+
+// ── STORAGE ──
+function save(){
+  try{
+    localStorage.setItem('a12_wl',JSON.stringify(S.watchlist));
+    localStorage.setItem('a12_ct',JSON.stringify(S.contact));
+    localStorage.setItem('a12_ob','1');
+    if(S.rating) localStorage.setItem('a12_rating',S.rating);
+  }catch(e){}
+}
+function load(){
+  try{
+    const w=localStorage.getItem('a12_wl');
+    const c=localStorage.getItem('a12_ct');
+    if(w)S.watchlist=JSON.parse(w);
+    if(c)S.contact={...S.contact,...JSON.parse(c)};
+    S.onboarded=!!localStorage.getItem('a12_ob');
+    S.rating=parseInt(localStorage.getItem('a12_rating'))||0;
+  }catch(e){}
+}
+
+// ── UTILS ──
+function daysUntil(ds){if(!ds)return null;const d=new Date(ds);d.setHours(0,0,0,0);return Math.ceil((d-TODAY)/86400000);}
+function fmtDate(ds){if(!ds)return'—';return new Date(ds).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
+function urgCls(days,status){if(status==='closed')return'closed';if(days===null||days<0)return'closed';if(days<=14)return'urgent';if(days<=30)return'soon';return'ok';}
+function urgLbl(days,status){if(status==='closed')return'CLOSED';if(status==='check_site')return'CHECK';if(days===null||days<0)return'CLOSED';if(days===0)return'TODAY!';if(days<=14)return'URGENT';if(days<=30)return'SOON';return'OPEN';}
+function el(id){return document.getElementById(id);}
+function show(name){document.querySelectorAll('.screen').forEach(s=>{s.classList.toggle('hidden',s.id!=='screen-'+name);});}
+
+// ── WHATSAPP SHARE ──
+function shareWhatsApp(){
+  const msg=encodeURIComponent(`📚 After12th — Track JEE, NEET, KCET & more!\nNever miss a registration deadline.\nInstall free: ${APP_URL}`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+  // GA event (if analytics loaded)
+  if(typeof gtag!=='undefined') gtag('event','share',{method:'whatsapp'});
+}
+
+// ── FEEDBACK ──
+function openFeedback(){window.open('https://forms.gle/trbyEFDaPxsZBveU8','_blank');if(typeof gtag!=='undefined')gtag('event','feedback_open');}
+function initStars(){}
+
+// ── SPLASH ──
+el('splash-start').addEventListener('click',()=>{
+  if(S.onboarded&&S.watchlist.length>0){renderCards();show('cards');}
+  else{renderGrid();show('watchlist');}
+});
+
+// ── WATCHLIST GRID ──
+function renderGrid(){
+  const g=el('exam-grid');
+  g.innerHTML='';
+  S.exams.forEach(exam=>{
+    const on=S.watchlist.includes(exam.id);
+    const t=document.createElement('div');
+    t.className='exam-tile'+(on?'':' off');
+    if(on){t.style.background=exam.brand_color;t.style.borderColor=exam.brand_color;}
+    t.innerHTML=`<div class="exam-tile-name">${exam.short_name}</div><div class="exam-tile-type">${exam.type}</div>${on?'<div class="tick">✓</div>':''}`;
+    t.addEventListener('click',()=>{
+      const i=S.watchlist.indexOf(exam.id);
+      if(i>=0){
+        S.watchlist.splice(i,1);t.classList.add('off');
+        t.style.background='';t.style.borderColor='';
+        t.querySelector('.tick')?.remove();
+      }else{
+        S.watchlist.push(exam.id);t.classList.remove('off');
+        t.style.background=exam.brand_color;t.style.borderColor=exam.brand_color;
+        if(!t.querySelector('.tick')){const tk=document.createElement('div');tk.className='tick';tk.textContent='✓';t.appendChild(tk);}
+      }
+      updateGridCount();
+    });
+    g.appendChild(t);
+  });
+  updateGridCount();
+}
+function updateGridCount(){
+  const n=S.watchlist.length;
+  el('sel-count').textContent=n?`${n} exam${n>1?'s':''} selected`:'No exams selected';
+  el('btn-continue').disabled=n===0;
+}
+
+el('btn-continue').addEventListener('click',()=>{save();show('setup');});
+
+// ── SETUP ──
+document.querySelectorAll('.stream-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.stream-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  S.contact.stream=btn.dataset.stream;
+  el('nios-row').style.display=S.contact.stream==='PCM'?'flex':'none';
+}));
+el('btn-save').addEventListener('click',()=>{
+  S.contact.name=el('inp-name').value.trim()||'Student';
+  S.contact.alertDays=parseInt(el('sel-days').value)||14;
+  save();renderCards();show('cards');
+  initStars();
+});
+el('nios-link-setup').addEventListener('click',()=>{renderNios();show('nios');});
+
+// ── CARDS ──
+function sorted(){
+  return S.watchlist.map(id=>S.exams.find(e=>e.id===id)).filter(Boolean).sort((a,b)=>{
+    const da=daysUntil(a.app_display?.next_actionable_date);
+    const db=daysUntil(b.app_display?.next_actionable_date);
+    return(da===null?9999:da<0?9000:da)-(db===null?9999:db<0?9000:db);
+  });
+}
+function renderCards(){
+  const list=sorted();if(!list.length)return;
+  S.currentCard=0;
+  const area=el('card-area'),dots=el('card-dots');
+  area.innerHTML='';dots.innerHTML='';
+  list.forEach((exam,i)=>{
+    area.appendChild(buildCard(exam,i));
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');d.id='cdot-'+i;
+    dots.appendChild(d);
+  });
+  let tx=0;
+  area.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  area.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40){dx<0?nextCard():prevCard();}},{passive:true});
+  initStars();
+}
+function buildCard(exam,idx){
+  const ad=exam.app_display||{};
+  const days=daysUntil(ad.next_actionable_date);
+  const urg=urgCls(days,ad.registration_status);
+  const lbl=urgLbl(days,ad.registration_status);
+  const c=exam.contact||{};
+  const dStr=days===null?'—':days<0?'Passed':days===0?'Today':days+'d';
+  const pct=Math.min(100,Math.max(5,days===null||days<0?100:100-(days/90*100)));
+  const fc=urg==='urgent'?'#FF4D6A':urg==='soon'?'#FFB830':urg==='ok'?'#2DDBA0':'#5C5A7A';
+  const popPct=((exam.popularity_score||7)/10*100).toFixed(0);
+  const fee=exam.fees?.general||exam.fees?.general_male||exam.fees?.all_categories||exam.fees?.general_standard_courses;
+  const feeSub=exam.fees?.sc_st?`₹${exam.fees.sc_st} SC/ST`:exam.fees?.note||'';
+  const pass=exam.qualifying?.passing_marks||'—';
+  const att=exam.attempts?.max_total===null?'∞':exam.attempts?.max_per_year?`${exam.attempts.max_per_year}/yr`:'—';
+  const div=document.createElement('div');
+  div.className='card'+(idx===0?' active':' next');
+  div.id='card-'+idx;
+  div.innerHTML=`
+    <div class="card-hdr">
+      <div class="card-logo-sq" style="background:${exam.brand_color}">${exam.short_name}</div>
+      <div><div class="card-exam-name">${exam.short_name}</div><div class="card-exam-full">${exam.full_name}</div></div>
+      <div class="upill ${urg}">${lbl}</div>
+    </div>
+    <div class="info-grid">
+      <div class="itile ${urg==='urgent'||urg==='soon'?'hl':''}">
+        <div class="itl">${ad.deadline_label||'Reg. deadline'}</div>
+        <div class="itv">${fmtDate(ad.registration_deadline)}</div>
+        <div class="its">${ad.registration_status==='closed'?'Closed':ad.registration_status==='open'?'Open':'Check site'}</div>
+      </div>
+      <div class="itile"><div class="itl">App. fee</div><div class="itv">${fee?'₹'+fee:'—'}</div><div class="its">${feeSub}</div></div>
+      <div class="itile"><div class="itl">Exam date</div><div class="itv">${fmtDate(ad.exam_date)}</div></div>
+      <div class="itile"><div class="itl">Results</div><div class="itv">${fmtDate(ad.result_date)}</div></div>
+    </div>
+    <div class="stats-row">
+      <div class="stile"><div class="sv">${exam.exam_pattern?.total_marks||'—'}</div><div class="sl">Total marks</div></div>
+      <div class="stile"><div class="sv">${pass}</div><div class="sl">Pass / cutoff</div></div>
+      <div class="stile"><div class="sv">${att}</div><div class="sl">Attempts</div></div>
+    </div>
+    <div class="pop-row">
+      <div class="pop-lbl">Popularity</div>
+      <div class="pop-track"><div class="pop-fill" style="width:${popPct}%"></div></div>
+      <div class="pop-score">${exam.popularity_score?.toFixed(1)||'—'}/10</div>
+    </div>
+    ${c.helpline_phone?`
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <a class="contact-row" href="tel:${c.helpline_phone[0].replace(/[\s-]/g,'')}">
+        <div class="cicon">📞</div><div><div class="clbl">${c.hours||'Helpdesk'}</div><div class="cval">${c.helpline_phone[0]}</div></div>
+      </a>
+      <a class="contact-row" href="mailto:${c.email}">
+        <div class="cicon">✉️</div><div><div class="clbl">Email</div><div class="cval">${c.email}</div></div>
+      </a>
+    </div>`:''}
+    <div class="dl-strip ${urg}">
+      <div style="flex:1">
+        <div class="dl-days ${urg}">${dStr}</div>
+        <div class="dl-sub">${ad.next_actionable_label||'until next deadline'}</div>
+        <div class="dl-prog"><div class="dl-fill" style="width:${pct}%;background:${fc}"></div></div>
+      </div>
+      <div style="font-size:22px">${urg==='urgent'?'⚠️':urg==='soon'?'📌':urg==='ok'?'✅':'🔒'}</div>
+    </div>`;
+  return div;
+}
+function showCard(i){
+  sorted().forEach((_,j)=>{
+    const c=el('card-'+j),d=el('cdot-'+j);
+    if(c)c.className='card'+(j===i?' active':j<i?' prev':' next');
+    if(d)d.className='dot'+(j===i?' active':'');
+  });
+}
+function nextCard(){const m=sorted().length-1;if(S.currentCard<m){S.currentCard++;showCard(S.currentCard);}}
+function prevCard(){if(S.currentCard>0){S.currentCard--;showCard(S.currentCard);}}
+el('btn-next').addEventListener('click',nextCard);
+el('btn-edit').addEventListener('click',()=>{renderGrid();show('watchlist');});
+
+// ── SHARE BUTTONS ──
+el('btn-share').addEventListener('click',shareWhatsApp);
+el('btn-feedback').addEventListener('click',openFeedback);
+el('settings-share-btn').addEventListener('click',shareWhatsApp);
+el('settings-feedback-btn').addEventListener('click',openFeedback);
+
+// ── ALERTS ──
+function renderAlerts(){
+  const list=sorted();
+  if(!list.length){el('alert-list').innerHTML='<div class="alert-empty">No exams in your watchlist.<br>Add some to see deadlines here.</div>';return;}
+  el('alert-list').innerHTML=list.map(exam=>{
+    const ad=exam.app_display||{};
+    const days=daysUntil(ad.next_actionable_date);
+    const urg=urgCls(days,ad.registration_status);
+    const dStr=days===null?'—':days<0?'Done':days===0?'0':String(days);
+    const fee=exam.fees?.general||exam.fees?.all_categories||exam.fees?.general_male||'';
+    const marks=exam.exam_pattern?.total_marks?exam.exam_pattern.total_marks+' marks':'';
+    return`<div class="aitem">
+      <div class="alogo" style="background:${exam.brand_color}">${exam.short_name}</div>
+      <div><div class="aname">${exam.short_name}</div><div class="adetail">${ad.next_actionable_label||''}</div>
+      <div class="aextra">${[fee?'₹'+fee:'',marks].filter(Boolean).join(' · ')}</div></div>
+      <div class="adays"><div class="anum ${urg}">${dStr}${days!==null&&days>0?'<span style="font-size:11px;font-weight:400">d</span>':''}</div>
+      <div class="aunit">${days!==null&&days<0?'passed':days===null?'':'left'}</div></div>
+    </div>`;
+  }).join('');
+}
+
+// ── NIOS ──
+function renderNios(){
+  const nd=window._niosData;if(!nd)return;
+  const route=nd.two_routes[S.niosRoute==='A'?'route_a':'route_b'];
+  el('nios-steps').innerHTML=nd.step_by_step_for_pcm_student.map(s=>`
+    <div class="step-card"><div class="step-num">${s.step}</div><div>
+      <div class="step-action">${s.action}</div><div class="step-detail">${s.detail}</div>
+      ${s.tip?`<div class="step-tip">💡 ${s.tip}</div>`:''}
+    </div></div>`).join('');
+  el('nios-route-detail').innerHTML=`
+    <div class="itile" style="margin-bottom:8px"><div class="itl">Approx. fee</div><div class="itv">₹${route.fees?.total_approx||'—'}</div><div class="its">${route.fees?.note||''}</div></div>
+    <div style="font-size:12px;color:#9896B8;line-height:1.6;margin-bottom:8px">${route.description}</div>
+    ${(route.how_to_apply||[]).map((s,i)=>`<div style="display:flex;gap:8px;margin-bottom:6px">
+      <div style="width:18px;height:18px;border-radius:50%;background:#252540;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#7C6FFF;flex-shrink:0;margin-top:1px">${i+1}</div>
+      <div style="font-size:12px;color:#9896B8;line-height:1.5">${s}</div></div>`).join('')}`;
+  el('nios-warnings').innerHTML=nd.important_warnings.map(w=>`
+    <div class="warn-card ${w.level}"><div class="warn-icon">${w.level==='critical'?'⚠️':w.level==='important'?'❗':'ℹ️'}</div>
+    <div><div class="warn-title">${w.warning}</div><div class="warn-text">${w.detail}</div></div></div>`).join('');
+  const c=nd.contact;
+  el('nios-contact').innerHTML=`
+    <a class="contact-row" href="tel:18001809393"><div class="cicon">📞</div><div><div class="clbl">NIOS Helpline (Toll Free)</div><div class="cval">${c.nios_helpline}</div></div></a>
+    <a class="contact-row" href="mailto:${c.nios_email_admissions}" style="margin-top:6px"><div class="cicon">✉️</div><div><div class="clbl">Admissions</div><div class="cval">${c.nios_email_admissions}</div></div></a>`;
+}
+document.querySelectorAll('.route-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.route-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');S.niosRoute=btn.dataset.route;renderNios();
+}));
+el('btn-back-nios').addEventListener('click',()=>{renderSettings();show('settings');});
+
+// ── SETTINGS ──
+function renderSettings(){
+  const c=S.contact;
+  el('set-profile-name').textContent=c.name||'Student';
+  el('set-profile-sub').textContent=(c.stream||'PCM')+' · Class XII';
+  el('set-days').textContent=(c.alertDays||14)+' days before';
+  el('watchlist-pills').innerHTML=S.watchlist.map(id=>{
+    const e=S.exams.find(x=>x.id===id);
+    return e?`<div class="pill" style="background:${e.brand_color}">${e.short_name}</div>`:'';
+  }).join('');
+}
+el('btn-close-settings').addEventListener('click',()=>{
+  document.querySelectorAll('.tbb').forEach(b=>b.classList.toggle('active',b.dataset.tab==='exams'));
+  renderCards();show('cards');
+});
+el('edit-watchlist-link').addEventListener('click',()=>{
+  renderGrid();
+  // Add done button behaviour
+  show('watchlist');
+});
+el('nios-link').addEventListener('click',()=>{renderNios();show('nios');});
+
+// ── TABS ──
+document.querySelectorAll('.tbb').forEach(btn=>btn.addEventListener('click',()=>{
+  const tab=btn.dataset.tab;
+  document.querySelectorAll('.tbb').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  if(tab==='exams'){renderCards();show('cards');}
+  else if(tab==='alerts'){renderAlerts();show('alerts');}
+  else if(tab==='settings'){renderSettings();show('settings');}
+}));
+
+// ── BACK TO CARDS from watchlist ──
+// Add done button dynamically
+const doneBtn=document.createElement('button');
+doneBtn.className='btn-ghost';
+doneBtn.textContent='Done ✓';
+doneBtn.style.cssText='position:absolute;top:12px;right:16px;z-index:10;';
+doneBtn.addEventListener('click',()=>{
+  save();
+  if(S.onboarded&&S.watchlist.length>0){renderCards();show('cards');}
+  else{show('setup');}
+});
+el('screen-watchlist').style.position='relative';
+el('screen-watchlist').appendChild(doneBtn);
+
+// ── INIT ──
+// ── INFO MODAL ──
+el('info-btn').addEventListener('click',()=>el('info-modal').classList.remove('hidden'));
+el('info-modal-close').addEventListener('click',()=>el('info-modal').classList.add('hidden'));
+el('info-modal').addEventListener('click',e=>{if(e.target===el('info-modal'))el('info-modal').classList.add('hidden');});
+
+load();
+fetch('data/exams.json')
+  .then(r=>r.json())
+  .then(data=>{
+    S.exams=data.exams;
+    window._niosData=data.nios_biology_route;
+    show('splash');
+
+  })
+  .catch(()=>show('splash'));
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
